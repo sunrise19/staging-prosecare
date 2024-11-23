@@ -12,12 +12,16 @@
     // $password = "proscibg_prose";
     // $dbname = "proscibg_prose";
 
-    $username = "root";
-    $password = "";
-    $dbname = "prosecare";
+    // $username = "root";
+    // $password = "";
+    // $dbname = "prosecare";
     
-    // $SITE_URL = "https://prosecare.com/TEST_V2";
-    $SITE_URL = "https://renderer.endor.dev/app"
+    $username = "root";
+    $password = "password";
+    $dbname = "proscare";
+    
+    $SITE_URL = "https://prosecare.com/TEST_V2";
+    // $SITE_URL = "https://renderer.endor.dev/app";
 
     $VIDEO_CONFERENCING_URL = 'https://6251-102-117-182-61.ngrok-free.app/';
 

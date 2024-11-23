@@ -41,6 +41,8 @@
         
                             if ($result->num_rows > 0) {
                                 while($irow = $result->fetch_assoc()) {
+                                    $_SESSION["first_name"] = $irow["first_name"]; 
+                                    $_SESSION["last_name"] = $irow["last_name"]; 
                                     $_SESSION["name"] = $irow["first_name"] . ' ' . $irow["last_name"];
                                 }
                                 $_SESSION["admin"] = true;
@@ -57,6 +59,8 @@
         
                             if ($result->num_rows > 0) {
                                 while($irow = $result->fetch_assoc()) {
+                                    $_SESSION["first_name"] = $irow["first_name"]; 
+                                    $_SESSION["last_name"] = $irow["last_name"];
                                     $_SESSION["name"] = $irow["first_name"] . ' ' . $irow["last_name"];
                                 }
                                 $_SESSION["admin"] = true;
@@ -97,6 +101,8 @@
                                     $_SESSION["hcp"] = true;
                                     $_SESSION["hcp_id"] = $irow["hcp_id"];
                                     $_SESSION["hospital_id"] = $irow["hospital"];
+                                    $_SESSION["first_name"] = $irow["first_name"]; 
+                                    $_SESSION["last_name"] = $irow["last_name"];
                                     $_SESSION["name"] = $irow["first_name"] . ' ' . $irow["last_name"];
                                 }
                             }else{
@@ -112,6 +118,8 @@
                             if ($result->num_rows > 0) {
                                 while($irow = $result->fetch_assoc()) {
                                     
+                                    $_SESSION["first_name"] = $irow["first_name"]; 
+                                    $_SESSION["last_name"] = $irow["last_name"];
                                     $_SESSION["name"] = $irow["first_name"] . ' ' . $irow["last_name"];
                                     $_SESSION["patient_id"] = $irow["patient_id"];
                                     $_SESSION["hospital_id"] = $irow["hospital_id"];
@@ -129,6 +137,8 @@
         
                             if ($result->num_rows > 0) {
                                 while($irow = $result->fetch_assoc()) {
+                                    $_SESSION["first_name"] = $irow["first_name"]; 
+                                    $_SESSION["last_name"] = $irow["last_name"];
                                     $_SESSION["name"] = $irow["first_name"] . ' ' . $irow["last_name"];
                                     $_SESSION["studycoordinator"] = true;
                                     $_SESSION["patient_id"] = $irow["studycoordinator_id"];
