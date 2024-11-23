@@ -1,0 +1,706 @@
+<?php 
+    error_reporting(0); 
+    ini_set('display_errors', 0);
+    session_start(); 
+    $TITLE = "Treatments"; 
+    include('Commons/header.php');  
+?>
+    <style id="dynamic_style"></style>
+
+    <style>
+
+        #page-topbar,.vertical-menu{
+            display: none;
+        }
+
+        .main-content, .page-content,.container-fluid{
+            margin: 0;
+            padding: 0
+        }
+
+        .shower {
+            width: 200px;
+            position: absolute;
+            <?php if(isset($_SESSION["admin"]) || $_SESSION["type"] == "hospital"){echo 'right: 20.5rem;';}else{echo 'right: 6rem;';}?>
+            top: 26px;
+            font-weight: 500;
+            background: transparent;
+        }
+
+        .form-control.error,.form-select.error {
+            border-color: #f44336;
+        }
+
+        .blue{
+            background: #556ee6;
+        }
+        .blue:hover,.blue:focus{
+            background: #3452e1;
+        }
+        
+
+        .input_item.picked,.input_item.picked:hover {
+            color: #fff;
+            background-color: #34c38f;
+        }
+
+        .input_item {
+            background: #eee;
+            display: none;
+            padding: 9px 18px;
+            margin: 0 5px 13px 0;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .input_item:hover {
+            background: #ddd;
+        }
+
+        .output {
+            background: #fff;
+            border: 1px solid #ced4d9;
+            border-radius: 5px;
+            padding: 12px 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .output_dropdown {
+            color: #000;
+            font-size: 22px;
+            position: absolute;
+            right: 6px;
+            background: #eee;
+            padding: 4px;
+            border-radius: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .output_dropdown:hover{
+            background: #ddd
+        }
+
+        div.input {
+            border: 1px solid #ced4d8;
+            padding: 12px 12px 0;
+            margin-top: -3px;
+            z-index: 1;
+            position: relative;
+            background: #fff;
+            border-radius: 0 0 5px 5px;
+            border-top-style: dashed;
+        }
+
+        .output_data {
+            display: inline-block;
+            background: #eee;
+            font-size: 12px;
+            padding: 3px 6px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        .output_contents {
+            white-space: nowrap;
+            overflow: auto;
+            position: absolute;
+            top: calc(50% - 12px);
+            width: calc(100% - 58px);
+            padding-bottom: 19px;
+            color: #495057;
+        }
+
+        .remove_data {
+            background: #ccc;
+            margin-left: 6px;
+            font-size: 14px;
+            transform: translateY(2px);
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .remove_data:hover {
+            background: #f44336;
+            color: #fff
+        }
+
+        .email_input {
+            width: 100%;
+            border: none;
+            outline: none !important;
+            margin-bottom: 10 px;
+            border: 1px dashed #ccc;
+            padding: 7px 8px;
+            border-radius: 5px;
+            margin-bottom: 10px
+        }
+
+        table{
+            font-size: 14px !important;
+        }
+
+        .modal-body .form-group {
+            margin-bottom: 6px;
+            margin-top: 25px;
+        }
+
+        .modal-body .form-group:first-of-type {
+            margin-top: 0;
+        }
+
+        .modal-body .form-group.col-6:first-of-type {
+            margin-top: 25px !important;
+        }
+
+        .table thead th {
+            font-size: 13px;
+        }
+
+        body{
+            font-size: .8125rem !important;
+            font-weight: 400 !important;
+        }
+
+        #video_conf_frame {
+            position: fixed;
+            top: 27px;
+            left: 27px;
+            z-index: 99999;
+            width: calc(100% - 54px);
+            height: calc(100% - 100px);
+            border-radius: 12px;
+        }
+
+        .video_conf_frame_back{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.5);
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            display: none;
+        }
+
+        .video_conf_frame_close {
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 15px;
+            padding: 11px 30px !important;
+        }
+
+
+        .closerc {
+            float: right;
+            margin: 20px;
+            font-weight: 600;
+            color: #ffeb3b;
+        }
+
+        .remove_value,
+        .remove_image,
+        .remove_input {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABQ0lEQVRoge2Yy07DMBBFj/gaWPAL5bEorxVQyg5Y8mbJJ/MBUEDQEhZgEWDcOrKTONE9Unbx1b0a2R4PCCGEEEKIHFkFjhPqbQIbCfWCWAEegClwmkBvADwCExoM40IU39+MuDBrwFNJbwKsR3oMYsxXJQriwwyB5z9aH8B1EqcBjIF3w8B5BQ1fiLukTgM4wg5zEbB2C3gx1t7W4jSAEfBmGLqcs2abzEI4qoTJNoTjEDvMVemfHewQN406DWAPeMU+gToTwrGPXZlF1cqSXf5XprV7IhZfmNpCLNUh2hesTd+ZTe7oxWY/wG+4M8ev70Is3+7Z3+q9aFFGVO+AfZ1v4+27w9fGh7xJhmQSxnpYzYCzChrWw6oA7pM6nUNvnrrL/B4+xE5SBrQ0fICfMFPgJIFeK+MgRy8GdEIIIYQQYjGffTbpZF4f+UYAAAAASUVORK5CYII=);
+            background-size: cover;
+            right: 11px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .images_container {
+            display: inline-block;
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+            white-space: nowrap;
+        }
+
+        .image_item {
+            width: 160px;
+            height: 115px;
+            display: inline-block;
+            border-radius: 0;
+            margin-right: 13px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .image_item:last-of-type {
+            margin-right: 0
+        }
+
+        .add_icon {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAAWklEQVRoge3XsQ2AMAwAwcD+O0NPA02sF7obwMkrjbMWALCOzfOvqfPOXYOnCakRUiOkRkiNkBohNV+30ecWO+31nr95ESE1fog1QmqE1AipEVIjpEYIABB0A2/0Az6X8bpXAAAAAElFTkSuQmCC);
+            background-size: cover;
+        }
+
+        span.section {
+            font-size: 14px;
+            color: #495057;
+        }
+
+        .tiny_image {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            object-fit: contain;
+            border-radius: 5px;
+            pointer-events: all !important;
+            user-select: all !important;
+        }
+
+        canvas,
+        .raw_image {
+            display: none;
+        }
+
+        .remove_image {
+            top: 12px;
+            transform: none;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .review_image {
+            width: 110px;
+            object-fit: contain;
+            background: #f3f3f3;
+            margin: 15px 15px 0 0;
+            padding: 10px;
+            cursor: pointer;
+            pointer-events: all !important;
+        }
+
+        .image_item.add_image{
+            background: #dddddd7a;
+            border-radius: 7px;
+        }
+
+        .file_name {
+            background: #00000082;
+            z-index: 1;
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            padding: 5px 10px;
+            bottom: 0;
+            color: #fff;
+            border-radius: 0 0 5px 5px;
+            font-size: 10px;
+            text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .drop_separator {
+            width: 100%;
+            text-align: center;
+            display: block;
+            font-size: 13px;
+            margin: 16px 0 0;
+            font-weight: 600;
+            color: #777;
+            background: #eee;
+            padding: 8px 0;
+            border-radius: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .show_on_change{
+            display: none;
+        }
+
+        @media only screen and (max-width: 800px){
+            .page-content{
+                padding-left: 1em !important; 
+                padding-right: 1em !important; 
+            }
+            .ui-datepicker-calendar{
+                transform: scale(0.85) translateX(-59%);
+                left: 50%;
+                position: relative;
+                top: -33px;
+            }
+            .ui-widget.ui-widget-content{
+                max-width: unset
+            }
+            #datepicker{
+                margin-bottom: 30px
+            }
+
+            .card{
+                height: auto !important;
+            }
+        }
+
+    </style>
+
+
+        <div class="main-content">
+
+            <div class="page-content p-0" style="padding-bottom: 0">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row d-none">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex justify-content-between flex-column">
+                                <h2 class="mb-0 snt font-weight-bold">Log Supportive Care</h2>
+                                <br>
+                                <h5 class="mb-0 snt font-size-15 font-weight-normal" style="color: #666">Log your supportive care here. Click on a day to begin</h5>
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->     
+                    
+                    <?php 
+
+                        include('../STATIC_API/Config.php');
+
+                        $UID = $_SESSION["id"];
+
+                        $sql = "SELECT cancer FROM patients WHERE user_id='$UID'";
+
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while($row = $result->fetch_assoc()) {
+                                echo "<script>const CANCER_TYPE = '".strtolower($row['cancer'])."'.replace(/ /g, '_');</script>";
+                            }
+
+                        }
+                    ?>
+                    
+                    <div class="l2r" style="align-items: start; gap: 18px;">
+                        <div class="card m-0" style="flex: 1; height: 100vh; box-shadow: none">
+                            <div class="card-body">
+
+                                <div class="empty_state">
+                                    <div>
+                                        <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="48" cy="48" r="47.75" fill="#F9D7EF"/>
+                                            <path d="M48 31.5417C44.7448 31.5417 41.5628 32.5069 38.8562 34.3154C36.1496 36.1239 34.0401 38.6943 32.7944 41.7017C31.5488 44.709 31.2228 48.0183 31.8579 51.2109C32.4929 54.4035 34.0604 57.3361 36.3622 59.6378C38.6639 61.9395 41.5965 63.507 44.7891 64.1421C47.9817 64.7771 51.2909 64.4512 54.2983 63.2055C57.3057 61.9598 59.8761 59.8503 61.6846 57.1438C63.493 54.4372 64.4583 51.2552 64.4583 48C64.4583 45.8387 64.0326 43.6985 63.2055 41.7017C62.3784 39.7049 61.1661 37.8905 59.6378 36.3622C58.1095 34.8339 56.2951 33.6216 54.2983 32.7945C52.3015 31.9674 50.1613 31.5417 48 31.5417ZM49.6458 54.5833C49.6458 55.0198 49.4724 55.4385 49.1637 55.7471C48.8551 56.0558 48.4365 56.2292 48 56.2292C47.5635 56.2292 47.1448 56.0558 46.8362 55.7471C46.5275 55.4385 46.3541 55.0198 46.3541 54.5833V46.3542C46.3541 45.9177 46.5275 45.499 46.8362 45.1904C47.1448 44.8817 47.5635 44.7083 48 44.7083C48.4365 44.7083 48.8551 44.8817 49.1637 45.1904C49.4724 45.499 49.6458 45.9177 49.6458 46.3542V54.5833ZM48 43.0625C47.6745 43.0625 47.3562 42.966 47.0856 42.7851C46.8149 42.6043 46.604 42.3472 46.4794 42.0465C46.3548 41.7458 46.3223 41.4148 46.3858 41.0956C46.4493 40.7763 46.606 40.4831 46.8362 40.2529C47.0664 40.0227 47.3596 39.866 47.6789 39.8025C47.9981 39.739 48.3291 39.7716 48.6298 39.8961C48.9305 40.0207 49.1876 40.2316 49.3684 40.5023C49.5493 40.773 49.6458 41.0912 49.6458 41.4167C49.6458 41.8532 49.4724 42.2718 49.1637 42.5805C48.8551 42.8891 48.4365 43.0625 48 43.0625Z" fill="#71207D"/>
+                                        </svg>
+                                        <h5 class="mt-2 mb-0 snt font-size-15 font-weight-normal es_message" style="color: #666">Click on a day to begin</h5>
+                                        <button class="btn btn-primary start_log mt-3" style="display: none">Add New Log</button>
+                                    </div>
+                                </div>
+
+
+                                <style>
+                                    .drop_d .sweetselect, .drop_d input, .extender {
+                                        padding: 17px 42px;
+                                        background: #fff !important;
+                                        color: #000 !important;
+                                        border: none !important;
+                                        font-size: 14px;
+                                        /* pointer-events: none; */
+                                    }
+                                    .drop_d{
+                                        width: 100%;
+                                        position: relative;
+                                    }
+                                    .drop_d input{
+                                        border: 1px solid #8D2D9233 !important;
+                                    }
+
+                                    div#datepicker {
+                                        margin-top: 41px;
+                                    }
+                                    .drop_separator {
+                                        text-align: left;
+                                        background: none;
+                                        letter-spacing: unset;
+                                        text-transform: capitalize;
+                                        color: #000;
+                                        font-size: 17px;
+                                        font-weight: 500;
+                                        margin: 0 !important;
+                                    }
+                                    .card-body{
+                                        padding: 0;
+                                    }
+                                    .sub-state{
+                                        border: none;
+                                        padding: 0;
+                                    }
+                                    .drop_d span {
+                                        display: none;
+                                    }
+                                    .i-g-block-label {
+                                        background: #f9f9f9
+                                    }
+                                    .drop_d, .simple_flex {
+                                        margin: 0 !important;
+                                    }
+                                    .extender {
+                                        border: 1px solid #8D2D9233 !important;
+                                        border-radius: 100px;
+                                    }
+                                    .t2b.as_sheet{
+                                        margin-bottom: 20px
+                                    }
+                                    .t2b .l2r{
+                                        gap: 20px;
+                                    }
+                                    .l2r .drop_d{
+                                        flex: 1;
+                                    }
+                                </style>
+
+                                <div class="side_effect_items" style="display: none">
+                                
+                                    <!-- <p class="card-title font-size-20 mb-2 current-state align-center" style="text-transform: none">Log Supportive Care</p> -->
+                                    <h5 class="mb-4 snt font-size-15 font-weight-normal sub-state" style="color: #000">No supportive care has been logged today. Log them below</h5>
+
+
+                                    <!-- BREAST -->
+                                    
+                                    <!-- HEAD AND NECK -->
+
+                                    <!-- MALE PELVIC -->
+
+                                    <!-- FEMALE PELVIC -->
+
+
+                                    <div class="t2b as_sheet">
+                                    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">Hospital admissions</label>
+                                            <div class="flex flex_row simple_flex">
+                                                <input type="text" placeholder="Enter reason for hospital admission here" id="hospital_admission">
+                                            </div>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">Date admitted or discharged</label>
+                                            <div class="l2r">
+                                                <div style="flex: 1; position: relative">
+                                                    <label class="i-g-block-label">Day</label>
+                                                    <select class="sweetselect sfx_select" id="day">
+                                                        <option value="" disabled selected>Day</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+                                                    </select>
+                                                </div>
+                                                <div style="flex: 1; position: relative">
+                                                    <label class="i-g-block-label">Month</label>
+                                                    <select class="sweetselect sfx_select" id="month">
+                                                        <option value="" disabled selected>Month</option>
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="December">December</option>
+                                                    </select>
+                                                </div>
+                                                <div style="flex: 1; position: relative">
+                                                    <label class="i-g-block-label">Year</label>
+                                                    <select class="sweetselect sfx_select" id="year">
+                                                        <option value="" disabled selected>Year</option>
+                                                        <option value="1980">1980</option>
+                                                        <option value="1981">1981</option>
+                                                        <option value="1982">1982</option>
+                                                        <option value="1983">1983</option>
+                                                        <option value="1984">1984</option>
+                                                        <option value="1985">1985</option>
+                                                        <option value="1986">1986</option>
+                                                        <option value="1987">1987</option>
+                                                        <option value="1988">1988</option>
+                                                        <option value="1989">1989</option>
+                                                        <option value="1990">1990</option>
+                                                        <option value="1991">1991</option>
+                                                        <option value="1992">1992</option>
+                                                        <option value="1993">1993</option>
+                                                        <option value="1994">1994</option>
+                                                        <option value="1995">1995</option>
+                                                        <option value="1996">1996</option>
+                                                        <option value="1997">1997</option>
+                                                        <option value="1998">1998</option>
+                                                        <option value="1999">1999</option>
+                                                        <option value="2000">2000</option>
+                                                        <option value="2001">2001</option>
+                                                        <option value="2002">2002</option>
+                                                        <option value="2003">2003</option>
+                                                        <option value="2004">2004</option>
+                                                        <option value="2005">2005</option>
+                                                        <option value="2006">2006</option>
+                                                        <option value="2007">2007</option>
+                                                        <option value="2008">2008</option>
+                                                        <option value="2009">2009</option>
+                                                        <option value="2010">2010</option>
+                                                        <option value="2011">2011</option>
+                                                        <option value="2012">2012</option>
+                                                        <option value="2013">2013</option>
+                                                        <option value="2014">2014</option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2021">2022</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">Was this due to side effects?</label>
+                                            <span style=" position: absolute; right: 10px; top: 34px; font-size: 20px">&#8964;</span>
+                                            <select class="sweetselect sfx_select visibility_controller" id="due_to_side_effects">
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck type_female_pelvic">
+                                            <label class="i-g-block-label">Dietary support?</label>
+                                            <span style=" position: absolute; right: 10px; top: 34px; font-size: 20px">&#8964;</span>
+                                            <select class="sweetselect sfx_select visibility_controller" id="dietary_support">
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">Gastrostomy</label>
+                                            <div class="flex flex_row simple_flex">
+                                                <input type="text" placeholder="Enter gastrostomy here" id="gastronomy">
+                                            </div>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">PNT</label>
+                                            <div class="flex flex_row simple_flex">
+                                                <input type="text" placeholder="Enter PNT here" id="PNT">
+                                            </div>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">High protein diet</label>
+                                            <div class="flex flex_row simple_flex">
+                                                <input type="text" placeholder="Enter high protein diet here" id="high_protein_diet">
+                                            </div>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck type_female_pelvic">
+                                            <label class="i-g-block-label">Pre-radiotherapy dental care</label>
+                                            <span style=" position: absolute; right: 10px; top: 34px; font-size: 20px">&#8964;</span>
+                                            <select class="sweetselect sfx_select visibility_controller" id="dental_care">
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck">
+                                            <label class="i-g-block-label">Did you receive oral hygiene tips and care from the dentist prior to radiotherapy?</label>
+                                            <span style=" position: absolute; right: 10px; top: 34px; font-size: 20px">&#8964;</span>
+                                            <select class="sweetselect sfx_select visibility_controller" id="tips">
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+    
+                                        <div class="drop_d to_remove type_head_and_neck type_female_pelvic">
+                                            <label class="i-g-block-label">Feeding gastrostomy tube insertion</label>
+                                            <span style=" position: absolute; right: 10px; top: 34px; font-size: 20px">&#8964;</span>
+                                            <select class="sweetselect sfx_select visibility_controller" id="tube">
+                                                <option value="" selected disabled>Select an option</option>
+                                                <option value="No">No</option>
+                                                <option value="Yes">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <button class="btn-primary btn-lg mt-4" id="add-data" style="padding: 13px 30px !important;font-size: 15px !important;border-radius: 50px !important;margin: 0 auto 25px;left: 50%;position: relative;transform: translateX(-50%);">Log Supportive Care</button>
+                                    <button class="btn-primary btn-lg mt-4" id="update-data" style="padding: 13px 30px !important;font-size: 15px !important;border-radius: 50px !important;margin: 0 auto 25px;left: 50%;position: relative;transform: translateX(-50%); display: none">Update Supportive Care</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="datepicker"></div>
+                    </div> <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+    
+    <?php include('Commons/footer.php');?>
+    
+    <script>var AUTH_NAME = '<?php echo $_SESSION["name"]?>'</script>
+    <script src="JS/jquery-ui.js"></script>
+    <script src="JS/LogSupportiveCare.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.S-Treatments').addClass('mm-active').find('span').css('color', '#fff')
+        })
+    </script>
