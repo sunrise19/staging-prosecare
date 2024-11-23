@@ -12,13 +12,10 @@
     // $password = "proscibg_prose";
     // $dbname = "proscibg_prose";
 
-    // $username = "root";
-    // $password = "";
-    // $dbname = "prosecare";
-    
     $username = "root";
-    $password = "password";
-    $dbname = "proscare";
+    $password = "";
+    $dbname = "prosecare";
+
     
     $SITE_URL = "https://prosecare.com/TEST_V2";
     // $SITE_URL = "https://renderer.endor.dev/app";
