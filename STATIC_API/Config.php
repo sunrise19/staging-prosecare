@@ -17,7 +17,7 @@
     $dbname = "prosecare";
     
     // $SITE_URL = "https://prosecare.com/TEST_V2";
-    $SITE_URL = "https://renderer.endor.dev/app"
+    $SITE_URL = "https://renderer.endor.dev/app";
 
     $VIDEO_CONFERENCING_URL = 'https://6251-102-117-182-61.ngrok-free.app/';
 
