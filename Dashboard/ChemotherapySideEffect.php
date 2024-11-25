@@ -1,4 +1,4 @@
-<div class="drop_d to_remove type_breast">
+<div class="drop_d ">
                                                 <label class="i-g-block-label">Vomiting</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_hair_loss">
@@ -10,7 +10,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Fever</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_arm_swelling">
@@ -22,7 +22,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Fatigue</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_swallowing_difficulty">
@@ -34,7 +34,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Nausea</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_chest_pain">
@@ -46,7 +46,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Vomiting</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_breast_pain">
@@ -58,7 +58,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Mouth sore</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_sensation_loss">
@@ -70,7 +70,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Diarrhea 0 - I have no episode of watery stool
 1 - I have less than 4 episodes of watery stool in 24 hours 
 2 - I have between 4-6 episodes of watery stool in 24 hours 
@@ -86,7 +86,7 @@ to feel dizzy)</option>
                                                 </select>
                                             </div>
                                             
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Constipation 0 - I am not constipated
 
 1 - I stool 3 - 4 times in a week 

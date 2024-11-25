@@ -1648,7 +1648,7 @@ $(document).ready(function () {
   // Initially show the Chemotherapy effects div and hide others
   $("#chemotherapy-effects").show();
   $("#radiotherapy-effects, #immunotherapy-effects, #surgery-effects").hide();
-
+  
   // Event listener for dropdown change
   $("#treatment_type").on("change", function () {
     const selectedValue = $(this).val(); // Get the selected value
@@ -1659,9 +1659,12 @@ $(document).ready(function () {
     ).hide();
 
     // Show the corresponding div based on the selected value
+
     if (selectedValue === "Chemotherapy") {
+      console.log(selectedValue,"selected value")
       $("#chemotherapy-effects").show();
     } else if (selectedValue === "Radiotherapy") {
+      console.log(selectedValue,"selected value")
       $("#radiotherapy-effects").show();
     } else if (selectedValue === "Immunotherapy") {
       $("#immunotherapy-effects").show();

@@ -265,7 +265,8 @@
                                             </div>
                                             
                                            <div id="chemotherapy-effects">
-                                             <?php include('ChemotherapySideEffect.php'); ?>
+                                           <?php include('ChemotherapySideEffect.php'); ?>
+                                           
                                            </div>
 
                                            <div id="radiotherapy-effects">
@@ -277,7 +278,7 @@
                                            </div>
 
                                            <div id="surgery-effects">
-                                             <?php include('SurgerySideEffect.php'); ?>
+                                             <?php  include('SurgerySideEffect.php'); ?>
                                            </div>
 
                                             <button class="btn-primary btn-lg mt-4" id="add-data" style="padding: 13px 30px !important;font-size: 15px !important;border-radius: 50px !important;margin: 0 auto 25px;left: 50%;position: relative;transform: translateX(-50%);">Log Side Effects</button>
