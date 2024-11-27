@@ -1426,6 +1426,30 @@ $(document).ready(function () {
         return result;
     }
 
+    $('.multi_select_dropdown').hide()
+$("#comorbidity-dropdown").on('change', function() {
+  const selectedOption = $(this).val()
+ 
+  if (selectedOption.toLowerCase() === 'yes') {
+   $('.multi_select_dropdown').show()
+  }else{
+    $('.multi_select_dropdown').hide()
+  }
+});
 
+ // Handle checkbox selection and update the selected items
+ $('.multi_select_list input[type="checkbox"]').on('change', function() {
+    const selectedOptions = [];
+    $('.multi_select_list input[type="checkbox"]:checked').each(function() {
+        selectedOptions.push($(this).val()); // Collect all checked options
+    });
+
+    // Update the displayed selected items
+    if (selectedOptions.length > 0) {
+        $('#multi-select-input').val(selectedOptions.join(', '));
+    } else {
+        $('#multi-select-input').val('Select options');
+    }
+});
 
 })

@@ -130,6 +130,14 @@
     .vertical_section{
         display: none;
     }
+
+    .multi_select_dropdown ul li{
+        list-style-type: none;
+    }
+
+    .multi_select_dropdown ul{
+        padding-top: 12px
+    }
 </style>
 
     <div class="main-content">
@@ -821,7 +829,32 @@
                                                 </div>
                                                 <div class="col-sm-12 col-lg-6 mb-3">
                                                     <span>Comorbidity</span>
-                                                    <input class="form-control" type="text" value="<?php echo $comorbidity ; ?>" id="comorbidity">
+                                                    <select class="sweetselect sfx_select" id="comorbidity-dropdown">
+                                                    <option value="" selected disabled>Select an option</option>
+                                                    <option value="No">No</option>
+                                                    <option value="Yes">Yes</option>
+                                                </select>
+
+                                                <div class="multi_select_dropdown">
+                                                <input class="form-control" id='multi-select-input' type="text" value="<?php echo $name_n ; ?>" >
+        <ul class="multi_select_list">
+            <li><label><input type="checkbox" value="Hypertension"> Hypertension</label></li>
+            <li><label><input type="checkbox" value="Diabetes">Diabetes</label></li>
+            <li><label><input type="checkbox" value="Depression">Depression</label></li>
+            <li><label><input type="checkbox" value="RVD+"> RVD+ </label></li>
+            <li><label><input type="checkbox" value="Asthma">Asthma</label></li>
+            <li><label><input type="checkbox" value="Heart Disease">Heart Disease</label></li>
+            <li><label><input type="checkbox" value="HBSS">HBSS</label></li>
+            <li><label><input type="checkbox" value="DYSPEPSIA"> DYSPEPSIA</label></li>
+            <li><label><input type="checkbox" value="CATARACT">CATARACT</label></li>
+            <li><label><input type="checkbox" value="ULCER">ULCER</label></li>
+            <li><label><input type="checkbox" value="HYPERTHYROIDISM"> HYPERTHYROIDISM </label></li>
+            <li><label><input type="checkbox" value="HEPATITIS C">HEPATITIS C</label></li>
+            <li><label><input type="checkbox" value="OSTEOARTHRITIS">OSTEOARTHRITIS</label></li>
+            <li><label><input type="checkbox" value="Chronic Kidney Disease">Chronic Kidney Disease</label></li>
+            <li><label><input type="checkbox" value="Others">Others</label></li>
+        </ul>
+    </div>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary waves-effect waves-light updatediseasecharactistics blue">Update Disease Characteristics</button>
