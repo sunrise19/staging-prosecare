@@ -1672,4 +1672,30 @@ $(document).ready(function () {
       $("#surgery-effects").show();
     }
   });
+
+    // Handle click on the caret icon to toggle the dropdown
+    $('.custom_prose_dropdown').on('click', function(event) {
+      event.stopPropagation(); // Prevent the click event from bubbling up
+      const dropdown = $(this);
+      const dropdownList = dropdown.find('.prose_select_list');
+
+      // Toggle visibility of the dropdown options
+      dropdownList.toggle();
+
+      // Toggle the active class on the dropdown (for caret rotation)
+      dropdown.toggleClass('active');
+  });
+
+  // Handle click on an option to update the selected item
+  $('.prose_select_list li').on('click', function() {
+      const selectedOption = $(this).text();
+      $('.prose_selected').text(selectedOption); // Update the displayed selection
+      $('.custom_prose_dropdown').removeClass('active'); // Reset caret rotation
+  });
+
+       // Optional: Close dropdown if clicking outside
+       $(document).on('click', function() {
+        $('.prose_select_list').hide(); // Close dropdown when clicking outside
+        $('.custom_prose_dropdown').removeClass('active'); // Reset caret rotation
+    });
 });

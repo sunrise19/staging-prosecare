@@ -87,13 +87,21 @@
                         <div class="mt-4 as_sheet side_effects_graph">
                             <div class="l2r" style="align-items: center; justify-content: space-between">
                                 <span class="small_title">Side Effect History</span>
-                                <div class="prose_dropdown l2r" style="width: unset">
+                                <!-- <div class="prose_dropdown l2r" style="width: unset">
                                     <select class="prose_select" style=" border: 1px solid; ">
                                         <option value="Tiredness">Tiredness</option>
                                         <option value="Weakness">Weakness</option>
                                     </select>
-                                    <i class="bx bx-chevron-down"></i>
-                                </div>
+                                    <i class="bx bx-chevron-down" id="prose-dropdown-caret"></i>
+                                </div> -->
+                                <div class="custom_prose_dropdown ">
+        <span class="prose_selected">Tiredness</span>
+        <i class="bx bx-chevron-down"></i>
+        <ul class="prose_select_list">
+            <li data-value="Tiredness">Tiredness</li>
+            <li data-value="Weakness">Weakness</li>
+        </ul>
+    </div>
                             </div>
                             <div class="l2r mt-3" style=" gap: 35px; ">
                                 <div class="l2r" style=" align-items: center; width: unset; gap: 15px">
@@ -261,7 +269,7 @@
                                                     <option value="Immunotherapy">Immunotherapy</option>
                                                     <option value="Surgery">Surgery</option>
                                                 </select>
-                                                <i class="bx bx-chevron-down"></i>
+                                                <i class="bx bx-chevron-down" ></i>
                                             </div>
                                             
                                            <div id="chemotherapy-effects">
