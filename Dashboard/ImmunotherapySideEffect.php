@@ -1,6 +1,6 @@
 
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Fever and flu-like symptoms</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_arm_swelling">
@@ -12,7 +12,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Fatigue</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_swallowing_difficulty">
@@ -24,7 +24,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Nausea</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_chest_pain">
@@ -36,7 +36,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Vomiting</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_breast_pain">
@@ -48,7 +48,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Arthritis</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_sensation_loss">
@@ -60,7 +60,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Chills</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_skin_color">
@@ -72,7 +72,7 @@
                                                 </select>
                                             </div>
                                             
-                                            <div class="drop_d to_remove type_breast">
+                                            <div class="drop_d ">
                                                 <label class="i-g-block-label">Constipation</label>
                                                 <span style=" position: absolute; right: 10px; bottom: 14px; font-size: 20px">&#8964;</span>
                                                 <select class="sweetselect sfx_select" id="b_tired_or_weak">

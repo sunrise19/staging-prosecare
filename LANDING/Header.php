@@ -16,20 +16,14 @@
 
 <body>
 
-    <nav>
-        <div class="logo_section">
-            <div class="logo" onclick="location.href='./'"></div>
-        </div>
-        <div class="nav_links_section">
-            <div class="nav_links_middle">
-                <a href="./" class="nav_link">About</a>
-                <a href="./Plans&Pricing" class="nav_link">Plans &amp; Pricing</a>
-                <a href="#ContactUs" class="nav_link">Contact Us</a>
-            </div>
-            <div class="float_right">
-                <a href="./Login" class="nav_link button_type orange">Login</a>
-                <a href="./AccountType.php" class="nav_link button_type">Sign up</a>
+    <nav class="top-bar">
+        <div >
+            <div class="logo" onclick="location.href='./'">
+                <img src="assets/prosecare-logo.png" alt="logo"/>
             </div>
         </div>
-        <div class="menu"></div>
+        <div >
+          <a href="./AccountType.php" class="nav_link button_type">Sign up</a>
+          <a href="./Login" class="login_btn">Login</a>   
+        </div>
     </nav>

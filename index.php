@@ -1,106 +1,203 @@
-<?php header('Location: ./Login')?>
+
 <?php include('LANDING/Header.php'); ?>
 
-    <section class="more_padding_up">
-
-        <div class="left_section">
-            <span class="section_title big">PROSE Care</span>
-            <span class="section_text">Accelerating access to Remote Cancer care through <br>a .</span>
-            <button class="get_started" onclick="location.href='./AccountType'">Get Started</button>
-        </div>
-        <div class="right_section">
-            <img src="assets/css/img/box.svg" alt="" class="right_box">
-        </div>
-        <img src="assets/css/img/two_lines.svg" alt="" class="two_lines">
+    <section class="jumbotron-section">
+        
+       <div class="text-section"><h2>Help us help you.</h2>
+       
+    </div> 
+    <p>We imagine a world where if you are <br /> experiencing side effects, You can report your side effects as frequently as you want</p> 
+    <button class="btn">Get Started</button>
     </section>
 
     <section>
+     <div  class="section-two-images">
+        <div>
+            <img src="assets/images/female_doctor.png" />
+        </div>
+        <div>
+            <img src="assets/images/lady_pressing_computer.png" />
+        </div>
+        <div>
+           <img src="assets/images/patient_on_bed.png" />
+        </div>
+     </div>
+    </section>
 
-        <span class="section_title">App Features</span>
-
-        <br>
-        <div class="hiw_section">
-            <div class="hiw">
-                <img src="assets/css/img/videoconf.svg" alt="" class="hiw_icon">
-                <span class="hiw_title">Video Conferencing</span>
-                <span class="hiw_text">Our secure virtual meeting rooms allow multiple specialists from all over the country to connect and discuss cases real time, improving patient care and clinical outcomes.</span>
+    <section>
+        <div  class="section_three">
+            <div>
+            <h2 class="section_three_heading_text"><i>Treatment</i> sites and possible <i>side effects</i></h2>
             </div>
-            <div class="hiw">
-                <img src="assets/css/img/healthinfoport.svg" alt="" class="hiw_icon">
-                <span class="hiw_title">Health Information Portal</span>
-                <span class="hiw_text">Authorised access to images, and documents, with the option to upload investigations and medical reports.</span>
-            </div>
-            <div class="hiw">
-                <img src="assets/css/img/worldclasscancare.svg" alt="" class="hiw_icon">
-                <span class="hiw_title">World-class Cancer Care</span>
-                <span class="hiw_text">Access to a  - the gold standard of cancer care, along with the ability to utilise evidence-based guidelines and relevant medical literature.</span>
-            </div>
-            <div class="hiw">
-                <img src="assets/css/img/patientcacoor.png" alt="" class="hiw_icon">
-                <span class="hiw_title">Patient Care Coordination</span>
-                <span class="hiw_text">Connect and network with oncologists and other cancer care specialists all over the country.</span>
+            <div>
+            <p>About 60% of people diagnosed with cancer require radiotherapy at some point in their care.
+            Radiotherapy is an essential treatment option in cancer care that uses powerful light (ionizing radiation) to kill cancer cells and shrink tumours. However, radiotherapy not only kills or slows down the growth of cancer cells, it can also cause damage to healthy cells, and result inside effects.</p>
             </div>
         </div>
-
-        <div class="right_section two">
-            <img src="assets/css/img/box2.svg" alt="" class="right_box two">
+        <div class="cancer-type-boxes">
+            <div>
+                <h2>01.</h2>
+                <h3>Breast</h3>
+                <ul>
+                    <li>Fatigue</li>
+                    <li>Hair loss</li>
+                    <li>Skin changes</li>
+                    <li>Swelling (edema)</li>
+                    <li>Tenderness</li>
+                </ul>
+            </div>
+            <div>
+            <h2>02.</h2>
+            <h3>Head and Neck</h3>
+            <ul>
+                    <li>Hair loss</li>
+                    <li>Mouth changes</li>
+                    <li>Skin changes</li>
+                    <li>Taste changes</li>
+                    <li>Throat changes(such as difficulty swallowing)</li>
+                </ul>
+            </div>
+            <div>
+            <h2>03.</h2>
+            <h3>Pelvic</h3>
+            <ul>
+                    <li>Diarrhea</li>
+                    <li>Fatigue</li>
+                    <li>Hair loss</li>
+                    <li>Nausea and vomiting</li>
+                    <li>Sexual Problems</li>
+                    <li>Fertility problems</li>
+                    <li>Skin changes</li>
+                    <li>Urinary bladder changes</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section class="colored purple">
-
-        <span class="section_title">&nbsp;&nbsp;Testimonials</span>
-
-        <img src="assets/css/img/quotes.svg" alt="" class="quotes">
-
-        <br>
-
-        <div class="t_card">
-            <div class="t_text">
-                <span class="t_text_title">Incredible Experience</span>
-                <span class="t_text_content">&nbsp; <br> I was able to get a 2nd opinion on my wife’s diagnosis and review her results. The doctor provided us with the much needed information about her diagnosis and this gave us hope.<br> &nbsp; </span>
+    <section class="section_four">
+        <div>
+            <div class="left-photo-top">
+                <img src="assets/images/section_four_left1.png" />
             </div>
-            <div class="t_author">
-                <!--<div class="t_author_pic"></div>-->
-                <div class="t_author_deets">
-                    <span class="t_author_name">P.M</span>
-                    <span class="t_author_job">Nigeria</span>
+            <div class="left-photo-bottom">
+            <img src="assets/images/section_four_left2.png" />
+            </div>
+        </div>
+        <div>
+             <div class="center-photo-top">
+                <img src="assets/images/section_four_center1.png" />
+            </div>
+            <div class="center-text">
+               <p>WHAT WE DO</p>
+               <h2>Seamless Side Effect<br /> Reporting for Better<br /> Cancer Care</h2>
+               <button>Get Started</button>
+            </div>
+            <div class="center-photo-bottom">
+            <img src="assets/images/section_four_center2.png" />
+            </div>
+        </div>
+        <div>
+        <div class="right-photo-top">
+                <img src="assets/images/section_four_right1.png" />
+            </div>
+            <div >
+            <img src="assets/images/section_four_right2.png" />
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-five">
+
+    </section>
+
+    <section class="section-six">
+        <div>
+            <div>
+                <div style="display:flex;align-items:center;gap:2px;padding-top:100px">
+                    <div style="width:24px;height:24px;border-radius:100px; background-color: #8D2D92;"></div>
+                    <h4 style="color: #8D2D92">FOR PATIENTS</h4>
                 </div>
+                <h2>Improved Side Effects and Treatment Management</h2>
+                <p>With Prosecare, Patients can log their side effects as they occur, ensuring no detail is forgotten.
+                Direct and constant communication with healthcare providers helps patients feel supported and understood.</p>
+            </div>
+            <div>
+                <img src="assets/images/section_six_image1.png" />
             </div>
         </div>
-
-        <div class="t_card">
-            <div class="t_text">
-                <span class="t_text_title">Dependable, Responsive, &amp; Professional</span>
-                <span class="t_text_content">&nbsp; <br>This Coronavirus pandemic scattered my appointment with my doctor. I am glad I was connected with a doctor online. &nbsp; <br> &nbsp; <br> &nbsp;  </span>
+        <div>
+        <div>
+                <img src="assets/images/section_six_image2.png" />
             </div>
-            <div class="t_author">
-                <!--<div class="t_author_pic"></div>-->
-                <div class="t_author_deets">
-                    <span class="t_author_name">I.U</span>
-                    <span class="t_author_job">Nigeria</span>
+        <div>
+                <div style="display:flex;align-items:center;gap:2px;padding-top:100px"> 
+                    <div style="width:24px;height:24px;border-radius:100px;background-color:#FE434A"></div>
+                    <h4 style="color:#FE434A">FOR HEALTHCARE PROFESSIONALS</h4>
                 </div>
+               
+                <h2>Improved Patient Care and Data-Driven Insights</h2>
+                <p>With Prosecare, Patients can log their side effects as they occur, ensuring no detail is forgotten.
+                Direct and constant communication with healthcare providers helps patients feel supported and understood.</p>
+            </div>
+           
+        </div>
+        <div>
+        <div>
+                <div style="display:flex;align-items:center;gap:2px;padding-top:100px">
+                    <div style="width:24px;height:24px;border-radius:100px; background-color: #8D2D92;"></div>
+                    <h4 style="color: #8D2D92">FOR HOSPITALS</h4>
+                </div>
+                
+                <h2>Optimized Resource Utilization</h2>
+                <p>With Prosecare, Patients can log their side effects as they occur, ensuring no detail is forgotten.
+                Direct and constant communication with healthcare providers helps patients feel supported and understood.</p>
+            </div>
+            <div>
+                <img src="assets/images/section_six_image3.png" />
             </div>
         </div>
+       
+     </section>
 
-        <div class="indicators">
-            <!--<div class="indicator active"></div>-->
-            <!--<div class="indicator"></div>-->
-            <!--<div class="indicator"></div>-->
+     <section class="section_seven">
+        <h3>We imagine a <i>world</i> where if you are experiencing side effects</h3>
+        <div class="section_seven_boxes_container">
+            <div class="section_seven_boxes">
+                <div>
+                    <img src="assets/images/Calendar.png" />
+                </div>
+                <p>You can report your side effects as frequently as you want on the PROSE care app</p>
+            </div>
+            <div class="section_seven_boxes">
+                <div >
+                  <img src="assets/images/user_icon.png" />
+                </div>
+                <p>You can have your radiation oncology team monitor your side effects on the app and respond to you promptly</p>
+            </div>
+            <div class="section_seven_boxes">
+                <div>
+                     <img src="assets/images/Users_Group.png" />
+                </div>
+                <p>You are able to review all side effects reported on the PROSE care app with your oncology team during your clinic visits.</p>
+            </div>
         </div>
+     </section>
 
-    </section>
 
-    <section class="colored no_margin_top">
-
-        <div class="left">
-            <span class="section_title">Connect with <br>other oncologists</span>
-            <span class="section_text">Team work makes you better, connect and network <br>with oncologists and other care specialists all over <br>the country.</span>
-        </div>
-        <div class="right">
-            <img src="assets/css/img/oncologists.svg" alt="">
-        </div>
-
-    </section>
+     <section class="section-eight">
+         <div class="section-eight-container">
+            <div>
+                <p>
+                Early reporting, systematic monitoring of side effects from radiotherapy can lead to significant benefits in patient care.
+                </p>
+                <button class="btn">Get Started</button>
+            </div>
+            <div>
+                <img src="assets/images/section_eight_pic.png" />
+            </div>
+         </div>
+     </section>
+    
 
 <?php include('LANDING/Footer.php'); ?>
