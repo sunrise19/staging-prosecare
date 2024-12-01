@@ -1,38 +1,53 @@
 
-    <section class="colored no_margin_top" id="ContactUs">
-        <hr>
-        <div class="footer_logo">
-            <img src="assets/css/img/footer_logo.png" alt="">
+    <section class="footer-section" id="">
+        <div>
+            <div>
+                <h5>Contact Us</h5>
+                <p >RBRR Digital Health hubDepartment of Radiation Biology,Radiotherapy and Radio-diagnosis, College of Medicine, University of Lagos, Lagos, Nigeria.(Mon-Fri from 8am-4pm)</p>
+            </div>
+            <div>
+                <h5>Links</h5>
+                <ul>
+                    <li>Sign Up</li>
+                    <li>Login</li>
+                    <li>About PROSE</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Company</h5>
+                <ul>
+                    <li>Terms of Use</li>
+                    <li>Privacy Policy</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+            <div>
+                <h5>Follow Us</h5>
+                <ul>
+                    <li>Twitter</li>
+                    <li>LinkedIn</li>
+                    <li>Facebook</li>
+                    <li>Instagram</li>
+                </ul>
+            </div>
         </div>
-        <div class="footer_details">
-            <span class="footer_item full">
-                <i class="fa fa-map-marker-alt footer_item_icon"></i>
-                Plot 24b Furo Ezimura, off Mobolaji Johnson estate, Maruwa Lekki Lagos.
-            </span>
-            <span class="footer_item">
-                <i class="fa fa-phone footer_item_icon"></i>
-                (+234)  913 - 444 - 5528
-            </span>
-            <span class="footer_item">
-                <i class="fa fa-envelope footer_item_icon"></i>
-                support@prosecare.com
-            </span>
-            <span class="footer_item full">
-                <!--Social Media-->
-                <a href="https://www.facebook.com/oncopadiapp/" target="_blank" class="fab fa-facebook-f footer_item_icon"></a>
-                <a href="https://twitter.com/oncopadiapp" target="_blank" class="fab fa-twitter footer_item_icon"></a>
-                <a href="https://www.linkedin.com/company/oncopadi/" target="_blank" class="fab fa-linkedin footer_item_icon"></a>
-                <a href="https://www.youtube.com/channel/UCHXLkjmyqWhUrqOdbuGdlfg?view_as=subscriber" target="_blank" class="fab fa-youtube footer_item_icon"></a>
-                <a href="https://www.instagram.com/oncopadiapp/" target="_blank" class="fab fa-instagram footer_item_icon"></a>
-            </span>
+        <div >    
+            <p>
+            +234-818-752-7806, +234-803-553-0802
+            </p>
+            <p>
+            research@oncopadi.com
+            </p>
+
+            <img src="assets/prosecare-logo.png" alt="logo"/>
         </div>
-        <div class="footer_bottom">
-            <a href="./" class="footer_link">About Us</a>
+       
+    </section>
+    <div class="footer_bottom">
             <a href="https://oncopadi.com/privacy-policy/" target="_blank" class="footer_link">Privacy Policy</a>
             <a href="https://oncopadi.com/terms-and-conditions/" target="_blank" class="footer_link">Terms &amp; Conditions</a>
-            <span class="footer_credit">Copyright &copy; 2022 &bull; PROSE CARE TECHNOLOGIES LIMITED. </span>
+            <span>Copyright &copy; 2022 &bull; PROSE CARE TECHNOLOGIES LIMITED. </span>
         </div>
-    </section>
 
 </body>
 
