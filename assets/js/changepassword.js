@@ -50,7 +50,7 @@ $(document).ready(function() {
                 } else if (data == '0') {
                     error('Authentication Failed :/<br><sub>Open the link from your email again</sub>', '')
                 } else if (data == '2') {
-                    error('This password has been used too many times :/', '')
+                    error('Please kindly use a password that you\'ve not used in recent times :/', '')
                 } else {
                     console.log(data)
                     error('An error occurred.<br>Please try again later', '')

@@ -14,11 +14,12 @@
 
             while($row = $result->fetch_assoc()) {
 
-                if($row["password"] == $password){
+                if(password_verify($_REQUEST["data"][1], $row['password'])){
                     echo '2';
                 }else{
+                    
 
-                    $sql = "UPDATE users SET password='$password' WHERE email_hash='$email_hash'";
+                    $sql = "UPDATE users SET password='$password', is_forgot_password='false' WHERE email_hash='$email_hash'";
         
                     if($conn->query($sql) === TRUE) {
                         echo '1';

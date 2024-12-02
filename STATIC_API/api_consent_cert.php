@@ -157,11 +157,76 @@ input{
                         ';
 
                 if($sendToEmail === TRUE || $sendToEmail == 'true'){
-                    $headers = 'From: "PROSE Care" <no-reply@prosecare.com>' . "\r\n" .
-                    'Content-type: text/html; charset=iso-8859-1'  . "\r\n" .
-                        'X-Mailer: PHP/' . phpversion();
+                    // Define headers
+                    $headers = 'MIME-Version: 1.0' . "\r\n" .
+                            'Content-Type: text/html; charset=UTF-8' . "\r\n" .
+                            'From: "PROSE Care" <no-reply@prosecare.com>' . "\r\n" .
+                            'Reply-To: info@prosecare.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
 
-                    mail($email, 'PROSE CARE INFORMED CONSENT DOCUMENT', $mailDocument, $headers);
+                    // Define subject
+                    $subject = 'PROSEcare Informed Consent Document';
+
+                    // Example email body ($mailDocument should be properly formatted HTML content)
+                    $message = '
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>PROSE Care Informed Consent</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                line-height: 1.6;
+                                color: #333;
+                                margin: 0;
+                                padding: 20px;
+                                background-color: #f9f9f9;
+                            }
+                            .email-container {
+                                background: #ffffff;
+                                border: 1px solid #dddddd;
+                                border-radius: 8px;
+                                max-width: 600px;
+                                margin: 20px auto;
+                                padding: 20px;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                            }
+                            .email-header {
+                                text-align: center;
+                                font-size: 24px;
+                                color: #007BFF;
+                            }
+                            .email-footer {
+                                text-align: center;
+                                margin-top: 20px;
+                                font-size: 12px;
+                                color: #555;
+                            }
+                            a {
+                                color: #007BFF;
+                                text-decoration: none;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="email-container">
+                            <h2 class="email-header">PROSEcare Informed Consent Document</h2>
+                            <p>Dear Participant,</p>
+                            <p>Attached is the **Informed Consent Document** for your review and reference. Please take a moment to read it carefully.</p>
+                            <p>If you have any questions or require further assistance, feel free to reach out to us at <a href="mailto:info@prosecare.com">info@prosecare.com</a>.</p>
+                            <p>Thank you for choosing <strong>PROSEcare</strong>.</p>
+                            <p>Kind regards,<br><br><strong>PROSEcare Team</strong></p>
+                        </div>
+                        <div class="email-footer">
+                            &copy; ' . date('Y') . ' PROSEcare. All rights reserved.
+                        </div>
+                    </body>
+                    </html>
+                    ';
+
+                    // Send the email
+                    mail($email, $subject, $message, $headers);
+
                 }
 
                 echo 1;
