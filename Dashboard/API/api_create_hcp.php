@@ -60,12 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
 
                 $email_hash = sha1($email) . sha1($email);
-                $password = password_hash($password, PASSWORD_DEFAULT);
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 $verification_code = rand(11111, 99999);
                 $consent = false;
-                $is_forgot = "true";
 
-                $sql = "INSERT INTO users (user_type, email, email_hash, $password, signup_date, signup_time, verification_code, verified, consent, is_forgot_password) VALUES ('hcp', '$email', '$email_hash', '$password', '$serverDate', '$serverTime', '$verification_code', 'true', '$consent', '$is_forgot')";
+                $sql = "INSERT INTO users (user_type, email, email_hash, password, signup_date, signup_time, verification_code, verified, consent, is_forgot_password) VALUES ('hcp', '$email', '$email_hash', '$hashed_password', '$serverDate', '$serverTime', '$verification_code', 'true', '$consent', 'true')";
 
                 // Define email headers
                 $headers = 'MIME-Version: 1.0' . "\r\n" .

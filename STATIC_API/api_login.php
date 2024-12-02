@@ -17,6 +17,7 @@
 
                 if(password_verify($password, $row['password'])){
                     if($row['is_forgot_password' == 'true']){
+                        $_SESSION["AUTH"] = $row['email_hash'];
                         echo '909';
                     }else{
                         if($row["active"] == 'true'){
