@@ -73,6 +73,78 @@
                         $_SESSION["name"] = $fname . ' ' . $lname;
                         $_SESSION["patient_id"] = $patient_id;
                         $_SESSION["patient"] = true;
+                                                
+                         // Define headers
+                         $headers = 'MIME-Version: 1.0' . "\r\n" .
+                         'Content-Type: text/html; charset=UTF-8' . "\r\n" .
+                         'From: "PROSEcare" <no-reply@prosecare.com>' . "\r\n" .
+                         'Reply-To: info@prosecare.com' . "\r\n" .
+                         'X-Mailer: PHP/' . phpversion();
+
+                        // Define subject
+                        $subject = 'PROSEcare Registration Completed';
+
+                        // Email message body
+                        $message = '
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>PROSEcare Registration Completed</title>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    line-height: 1.6;
+                                    color: #333;
+                                    margin: 0;
+                                    padding: 20px;
+                                    background-color: #f9f9f9;
+                                }
+                                .email-container {
+                                    background: #ffffff;
+                                    border: 1px solid #dddddd;
+                                    border-radius: 8px;
+                                    max-width: 600px;
+                                    margin: 20px auto;
+                                    padding: 20px;
+                                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                                }
+                                .email-header {
+                                    text-align: center;
+                                    font-size: 24px;
+                                    color: #007BFF;
+                                }
+                                .email-footer {
+                                    text-align: center;
+                                    margin-top: 20px;
+                                    font-size: 12px;
+                                    color: #555;
+                                }
+                                a {
+                                    color: #007BFF;
+                                    text-decoration: none;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="email-container">
+                                <h2 class="email-header">Welcome to PROSEcare!</h2>
+                                <p>Dear ' . htmlspecialchars($fname) . ',</p>
+                                <p>Thank you for joining PROSEcare.</p>
+                                <p>Your regiustration process has been completed successfully!</p>
+                                <br />
+                                <p>If you have any questions or concerns, feel free to contact us at <a href="mailto:info@prosecare.com">info@prosecare.com</a>.</p>
+                                <p>Regards,<br><strong>PROSEcare Team</strong></p>
+                            </div>
+                            <div class="email-footer">
+                                &copy; ' . date('Y') . ' PROSEcare. All rights reserved.
+                            </div>
+                        </body>
+                        </html>
+                        ';
+
+                        // Send the email
+                        mail($_SESSION["email"], $subject, $message, $headers);
+
                         echo 1;
                     }else{
                         // $conn->error

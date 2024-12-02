@@ -1,7 +1,7 @@
 
 <?php session_start(); $TITLE = "Change Password"; include('Commons/header.php');?>
 
-<script>var AUTH = '<?php if(isset($_REQUEST["WithAuth"])){echo $_REQUEST["WithAuth"];}?>'</script>
+<script>var AUTH = '<?php if(isset($_REQUEST["WithAuth"])){echo $_REQUEST["WithAuth"];}elseif($_SESSION["AUTH"]){echo $_SESSION["AUTH"];}?>'</script>
 
 <div>
     <div class="container-fluid p-0">
