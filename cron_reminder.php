@@ -107,14 +107,51 @@
                     }
                 }
     
-    
                 $title = $row['description'] . ' Reminder';
-                $message = 'Hello ' . $name . ', <br><br> This is a reminder to ' . $row['description'] . ' on <a href="https://prosecare.com/Login">PROSE Care</a><br><br>Please contact us if you have any questions or concerns via <a href="mailto:research@oncopadi.com">research@oncopadi.com</a><br><br>Thank you.<br><br>PROSE Care Team.';
-    
-                $headers = 'From: "PROSE Care" <no-reply@prosecare.com>' . "\r\n" .
-                    'Content-type: text/html; charset=iso-8859-1'  . "\r\n" .
-                        'X-Mailer: PHP/' . phpversion();
-    
+                $message = '
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>' . htmlspecialchars($title) . '</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                        }
+                        .content {
+                            margin: 20px auto;
+                            padding: 20px;
+                            max-width: 600px;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            background-color: #f9f9f9;
+                        }
+                        a {
+                            color: #007BFF;
+                            text-decoration: none;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="content">
+                        <p>Hello ' . htmlspecialchars($name) . ',</p>
+                        <p>This is a reminder to ' . htmlspecialchars($row['description']) . ' on <a href="https://prosecare.com/Login">PROSEcare</a>.</p>
+                        <p>If you have any questions or concerns, please contact us via <a href="mailto:info@prosecare.com">info@prosecare.com</a>.</p>
+                        <br>
+                        <p>Thank you,</p>
+                        <p><b>PROSEcare Team</b></p>
+                    </div>
+                </body>
+                </html>
+                ';
+                
+                $headers = 'MIME-Version: 1.0' . "\r\n" .
+                           'Content-type: text/html; charset=UTF-8' . "\r\n" .
+                           'From: PROSEcare <no-reply@prosecare.com>' . "\r\n" .
+                           'Reply-To: info@prosecare.com' . "\r\n" .
+                           'X-Mailer: PHP/' . phpversion();
+                
                 mail($email, $title, $message, $headers);
 
                 echo '<br><br>Mail is sent to ' . $name . ' ('.$email.')'. ' for ' . $reminder_time;

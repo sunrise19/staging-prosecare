@@ -37,17 +37,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
 
                 $email_hash = sha1($email) . sha1($email);
-                $password = password_hash('P@ssw0rd@123', PASSWORD_DEFAULT);
+                $password = password_hash($password, PASSWORD_DEFAULT);
                 $verification_code = rand(11111, 99999);
                 $consent = false;
+                $is_forgot = "true";
+                
 
-                $sql = "INSERT INTO users (user_type, email, email_hash, password, signup_date, signup_time, verification_code, verified, consent) VALUES ('hospital', '$email', '$email_hash', '$password', '$serverDate', '$serverTime', '$verification_code', 'true', '$consent')";
+                $sql = "INSERT INTO users (user_type, email, email_hash, $password, signup_date, signup_time, verification_code, verified, consent, is_forgot_password) VALUES ('hospital', '$email', '$email_hash', '$password', '$serverDate', '$serverTime', '$verification_code', 'true', '$consent', $is_forgot)";
 
-                $headers = 'From: "PROSE Care" <no-reply@prosecare.com>' . "\r\n" .
-                    'Content-type: text/html; charset=iso-8859-1'  . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-                mail($email, 'PROSE Care Regsitration', 'Hello 👋,<br><br>You have been registered on PROSE Care<br><br>PROSE Care Team.', $headers);
-
+                // Define email headers
+                $headers = 'MIME-Version: 1.0' . "\r\n" .
+                           'Content-Type: text/html; charset=UTF-8' . "\r\n" .
+                           'From: "PROSEcare" <no-reply@prosecare.com>' . "\r\n" .
+                           'Reply-To: info@prosecare.com' . "\r\n" .
+                           'X-Mailer: PHP/' . phpversion();
+                
+                // Define email subject
+                $subject = 'PROSEcare Registration';
+                
+                // Define email body
+                $message = '
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>PROSEcare Registration</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            background-color: #f4f4f4;
+                            margin: 0;
+                            padding: 20px;
+                        }
+                        .email-container {
+                            background-color: #fff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            max-width: 600px;
+                            margin: 20px auto;
+                        }
+                        .email-header {
+                            text-align: center;
+                            color: #007BFF;
+                        }
+                        .email-footer {
+                            text-align: center;
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #555;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="email-container">
+                        <h2 class="email-header">Welcome to PROSEcare!</h2>
+                        <p>Hello 👋,</p>
+                        <p>You have been successfully registered on <b>PROSEcare</b>. Kindly use the credential below to access your account:</p>
+                        <br />
+                        <p> Email: <b>' . $email . '</b></p>
+                        <p> Password: <b>' . $password . '</b></p>
+                        <br />
+                        <p>If you have any questions or need further assistance, feel free to contact us at <a href="mailto:info@prosecare.com">info@prosecare.com</a>.</p>
+                        <p>Thank you,<br>The PROSEcare Team</p>
+                    </div>
+                    <div class="email-footer">
+                        &copy; ' . date('Y') . ' PROSEcare. All rights reserved.
+                    </div>
+                </body>
+                </html>
+                ';
+                
+                // Send email
+                mail($email, $subject, $message, $headers);
+                                
                 if ($conn->query($sql) === TRUE) {
 
                     $user_id = $conn->insert_id;

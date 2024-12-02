@@ -42,6 +42,11 @@ $(document).ready(function() {
                     setTimeout(() => {
                         window.location.href = './VerifyAccount'
                     }, 1500);
+                } else if (data == '909') {
+                    success('Success', 'Welcome to ProseCare<br> Kindly change your password in order to proceed')
+                    setTimeout(() => {
+                        window.location.href = './ChangePassword'
+                    }, 1500);
                 } else if (data == '6') {
                     console.log(data)
                     error('Your account is currently suspended', '')
