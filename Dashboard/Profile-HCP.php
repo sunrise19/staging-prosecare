@@ -564,6 +564,14 @@
                                                         <option value="Doctor">Doctor</option>
                                                         <option value="Oncologist">Oncologist</option>
                                                         <option value="Physician">Physician</option>
+                                                        <option value="Medical Student">Medical Student</option>
+                                                        <option value="Medical Officer">Medical Officer</option>
+                                                        <option value="House Officer">House Officer</option>
+                                                        <option value="Resident">Resident</option>
+                                                        <option value="Fellow">Fellow</option>
+                                                        <option value="Nurse">Nurse</option>
+                                                        <option value="Consultant">Consultant</option>
+                                                        <option value="Prof">Prof</option>
                                                     </select>
                                                 </div>
 

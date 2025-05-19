@@ -35,9 +35,11 @@
 
                                         $row = mysqli_fetch_assoc($result);
 
-                                        if($row["specialty"] === "Doctor" || $row["specialty"] === "Oncologist")
+                                        if($row["specialty"] !== "Nurse" && $row["specialty"] !== "Prof")
                                         {
                                             echo 'Dr. ';
+                                        }elseif($row["specialty"] === "Prof"){
+                                            echo 'Prof. ';
                                         }else{
                                             echo '';
                                         }
