@@ -1,0 +1,18 @@
+[16-Mar-2025 06:34:22 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/proscibg/public_html/Dashboard/HCP-Home.php:101
+Stack trace:
+#0 /home/proscibg/public_html/Dashboard/HCP-Home.php(101): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/proscibg/public_html/Dashboard/HCP-Home.php on line 101
+[25-Mar-2025 08:49:02 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/proscibg/public_html/Dashboard/HCP-Home.php:101
+Stack trace:
+#0 /home/proscibg/public_html/Dashboard/HCP-Home.php(101): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/proscibg/public_html/Dashboard/HCP-Home.php on line 101
+[23-Apr-2025 16:52:38 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/proscibg/public_html/Dashboard/DoctorInfo.php:597
+Stack trace:
+#0 {main}
+  thrown in /home/proscibg/public_html/Dashboard/DoctorInfo.php on line 597
+[25-Apr-2025 09:22:48 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/proscibg/public_html/Dashboard/DoctorInfo.php:597
+Stack trace:
+#0 {main}
+  thrown in /home/proscibg/public_html/Dashboard/DoctorInfo.php on line 597

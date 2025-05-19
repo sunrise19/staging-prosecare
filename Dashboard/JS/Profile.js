@@ -1203,7 +1203,9 @@ $(document).ready(function () {
             histology = $('#histology').val(),
             cancer_grade = $('#cancer_grade').val(),
             cancer_stage = $('#cancer_stage').val(),
-            comorbidity = $('#comorbidity').val(),
+            cancer = $('#cancer').val(),
+            // comorbidity = $('#comorbidity').val(),
+            comorbidity = $('#comorbidity-dropdown').val(),
             isEditing = $(this).attr('data-editing') == 'true',
             patient_user_id = $(this).attr('data-patient')
 
@@ -1221,11 +1223,21 @@ $(document).ready(function () {
             return;
         } else if (cancer_stage == '') {
             error('Cancer Stage is invalid', $('#cancer_stage'));
+        } else if (cancer == '') {
+            error('Cancer is invalid', $('#cancer'));
             return;
         } else if (comorbidity == '') {
             error('Comorbidity is invalid', $('#comorbidity'));
             return;
         }
+
+        // Get all checked comorbidities
+        let comorbiditiesChecked = [];
+        $('.multi_select_list input[type="checkbox"]:checked').each(function () {
+            comorbiditiesChecked.push($(this).val());
+        });
+
+        let comorbiditiesString = comorbiditiesChecked.join(', '); // or JSON.stringify if needed
 
         Swal.fire({
             title: 'Updating Disease Characteristics',
@@ -1235,7 +1247,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             url: './API/api_profile_disease_characteristics.php?editing=' + isEditing + '&user_id=' + patient_user_id,
-            data: { data: [age_when_diagnosed, initial_cancer, histology, cancer_grade, cancer_stage, comorbidity] },
+            data: { data: [age_when_diagnosed, initial_cancer, histology, cancer_grade, cancer_stage, cancer, comorbiditiesString] },
             type: 'POST',
             success: function (data) {
                 console.log(data)

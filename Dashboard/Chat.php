@@ -116,37 +116,67 @@
 
                                                                         $user_id = $_SESSION["id"];
 
-                                                                        if(isset($_SESSION["hcp"]) || isset($_SESSION["studycoordinator"])){
+                                                                        // former fetch patient logic
+                                                                        // if(isset($_SESSION["hcp"]) || isset($_SESSION["studycoordinator"])){
 
-                                                                            // GET ALL PATIENTS
-                                                                            $sql = "SELECT * FROM patients JOIN users ON patients.user_id = users.user_id";
+                                                                        //     // GET ALL PATIENTS
+                                                                        //     $sql = "SELECT * FROM patients JOIN users ON patients.user_id = users.user_id";
     
-                                                                            $result = $conn->query($sql);
+                                                                        //     $result = $conn->query($sql);
     
-                                                                            if ($result->num_rows > 0) {
+                                                                        //     if ($result->num_rows > 0) {
     
-                                                                                echo '<div class="grouper">Patients</div>';
+                                                                        //         echo '<div class="grouper">Patients</div>';
     
-                                                                                while($row = $result->fetch_assoc()) {
+                                                                        //         while($row = $result->fetch_assoc()) {
     
-                                                                                    if($row["user_id"] != $user_id){
+                                                                        //             if($row["user_id"] != $user_id){
     
-                                                                                        echo '
-                                                                                            <li class="open_chat from_contacts_list" data-user="PROSE-'.$row["user_id"].'" data-type="Patient">
-                                                                                                <a href="javascript: void(0);">
-                                                                                                    <h5 class="font-size-14 mb-0">'.($_SESSION["hcp_123"] ? $row["pin"] : $row["first_name"] . ' ' . $row["last_name"] ).'</h5>
-                                                                                                </a>
-                                                                                            </li>';
-                                                                                    }
+                                                                        //                 echo '
+                                                                        //                     <li class="open_chat from_contacts_list" data-user="PROSE-'.$row["user_id"].'" data-type="Patient">
+                                                                        //                         <a href="javascript: void(0);">
+                                                                        //                             <h5 class="font-size-14 mb-0">'.($_SESSION["hcp_123"] ? $row["pin"] : $row["first_name"] . ' ' . $row["last_name"] ).'</h5>
+                                                                        //                         </a>
+                                                                        //                     </li>';
+                                                                        //             }
     
     
-                                                                                }
+                                                                        //         }
     
-                                                                            }
-                                                                        }
+                                                                        //     }
+                                                                        // }
                                                                             // END OF GET ALL PATIENTS
     
-    
+                                                                            if(isset($_SESSION["hcp"]) || isset($_SESSION["studycoordinator"])) {
+                                                                            
+                                                                                // Get HCP's hospital
+                                                                                $sql = "SELECT hcp_id, hospital FROM hcp WHERE user_id = '$user_id'";
+                                                                                $hcp = $conn->query($sql)->fetch_assoc();
+                                                                                $hcp_id = $hcp["hcp_id"];
+                                                                                $hospital_id = $hcp["hospital"];
+                                                                            
+                                                                                // A. Patients assigned to HCP
+                                                                                $sql_patients = "SELECT patients.*, users.* 
+                                                                                                 FROM patients 
+                                                                                                 JOIN users ON patients.user_id = users.user_id 
+                                                                                                 WHERE patients.assigned_hcp = '$hcp_id'";
+                                                                                // Execute and display patients list...
+                                                                            
+                                                                                // B. Other HCPs in same hospital
+                                                                                if ($hospital_id != null) {
+                                                                                    $sql_hcps = "SELECT hcp.*, users.* 
+                                                                                                 FROM hcp 
+                                                                                                 JOIN users ON hcp.user_id = users.user_id 
+                                                                                                 WHERE hcp.hospital = '$hospital_id' AND hcp.user_id != '$user_id'";
+                                                                                } else {
+                                                                                    // HCP with no hospital: Show other HCPs with no hospital
+                                                                                    $sql_hcps = "SELECT hcp.*, users.* 
+                                                                                                 FROM hcp 
+                                                                                                 JOIN users ON hcp.user_id = users.user_id 
+                                                                                                 WHERE hcp.hospital IS NULL AND hcp.user_id != '$user_id'";
+                                                                                }
+                                                                                // Execute and display HCP list...
+                                                                            }
     
                                                                         // if(isset($_SESSION["patients"]) || isset($_SESSION["studycoordinator"]) || isset($_SESSION["hcp"])){
                                                                             // GET ALL HCP

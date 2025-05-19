@@ -50,7 +50,7 @@
                     
                     <div class="row">
                                  
-                        <div class="col-md-6" onclick="window.locaiton.href = 'tel:+2347073443749'">
+                        <div class="col-md-6" onclick="window.location.href = 'tel:+2347073443749'">
                             <div class="card mini-stats-wid">
                                 <div class="card-body">
                                     <div class="media flex-column">
@@ -72,7 +72,7 @@
                     
                     <div class="row">
                                  
-                        <div class="col-md-6" onclick="window.locaiton.href = 'mailto:info@oncopadi.com'">
+                        <div class="col-md-6" onclick="window.location.href = 'mailto:info@oncopadi.com'">
                             <div class="card mini-stats-wid">
                                 <div class="card-body">
                                     <div class="media flex-column">

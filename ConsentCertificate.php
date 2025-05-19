@@ -49,7 +49,7 @@
 
                                                 $hash = $_REQUEST['WithAuth'];
     
-                                                $sql = "SELECT * FROM users JOIN patients on users.user_id=patients.user_id WHERE users.email_hash=$hash";
+                                                $sql = "SELECT * FROM users JOIN patients on users.user_id=patients.user_id WHERE users.email_hash='$hash'";
                                                                 
                                                 $result = mysqli_query($conn, $sql);
 

@@ -27,7 +27,23 @@
                             <img src="IMG/<?php echo $_SESSION["photo"]; ?>" class="chakra-image css-1gri224" onclick="window.location.href='./Profile-HCP'">
                             <div class="text-section">
                                 <span>Welcome,</span>
-                                <span class="header_hcp_name">Dr. <?php echo $_SESSION["name"];?></span>
+                                <span class="header_hcp_name">
+                                    <?php
+                                        $hcp_title_sql = "SELECT * FROM hcp WHERE user_id='$user_id'";
+
+                                        $result = mysqli_query($conn, $hcp_title_sql);
+
+                                        $row = mysqli_fetch_assoc($result);
+
+                                        if($row["specialty"] === "Doctor" || $row["specialty"] === "Oncologist")
+                                        {
+                                            echo 'Dr. ';
+                                        }else{
+                                            echo '';
+                                        }
+                                        echo $_SESSION["name"];
+                                    ?>
+                                </span>
                             </div>
                         </div>
                         <div class="css-1vakbk4">
@@ -56,13 +72,30 @@
                                         <div class="media-body align-items-center">
                                             <h4 class="mb-1 font-weight-bold" style="color: #57166A; font-size: 35px">
                                                 <?php 
-                                                    $sql = "SELECT count(1) FROM users WHERE user_type='patient'";
+
+                                                    // $sql = "SELECT count(1) FROM users WHERE user_type='patient'";
+                                                    // $result = mysqli_query($conn, $sql);
+                                                    // $row = mysqli_fetch_array($result);
+                                                    // echo number_format($row[0]);
+
+                                                    $hcp_id = 0;
+                                                    $sql = "SELECT hcp_id FROM hcp WHERE user_id = $user_id";
                                                     $result = mysqli_query($conn, $sql);
-                                                    $row = mysqli_fetch_array($result);
-                                                    echo number_format($row[0]);
+                                                    if ($row = mysqli_fetch_assoc($result)) {
+                                                        $hcp_id = $row['hcp_id'];
+                                                    }
+                                                    
+                                                    $patient_count = 0;
+                                                    $sql = "SELECT COUNT(*) as patient_count FROM patients WHERE assigned_hcp = $hcp_id";
+                                                    $result = mysqli_query($conn, $sql);
+                                                    if($row = mysqli_fetch_assoc($result)) {
+                                                        $patient_count = $row['patient_count'];
+                                                    }
+
+                                                    echo number_format($patient_count);
                                                 ?>
                                             </h4>
-                                            <p class="font-weight-medium font-size-13 mb-0" style="color: #7A667B; text-transform: none">Patients</p>
+                                            <p class="font-weight-medium font-size-13 mb-0" style="color: #7A667B; text-transform: none"><?php echo number_format($patient_count) > 0 ? 'Patients' : 'Patient' ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,10 +109,24 @@
                                         <div class="media-body align-items-center">
                                             <h4 class="mb-1 font-weight-bold" style="color: #57166A; font-size: 35px">
                                                 <?php 
-                                                    $sql = "SELECT count(1) FROM sideeffects";
+                                                    // $sql = "SELECT count(1) FROM sideeffects";
+                                                    // $result = mysqli_query($conn, $sql);
+                                                    // $row = mysqli_fetch_array($result);
+                                                    // echo number_format($row[0]);
+
+                                                    $sideeffect_count = 0;
+                                                    $sql = "
+                                                        SELECT COUNT(DISTINCT s.patient_id) AS count 
+                                                        FROM sideeffects s
+                                                        INNER JOIN patients p ON s.patient_id = p.patient_id
+                                                        WHERE p.assigned_hcp = $hcp_id
+                                                    ";
                                                     $result = mysqli_query($conn, $sql);
-                                                    $row = mysqli_fetch_array($result);
-                                                    echo number_format($row[0]);
+                                                    if ($row = mysqli_fetch_assoc($result)) {
+                                                        $sideeffect_count = $row['count'];
+                                                    }
+
+                                                    echo number_format($sideeffect_count);
                                                 ?>
                                             </h4>
                                             <p class="font-weight-medium font-size-13 mb-0" style="color: #7A667B; text-transform: none">Patients logged side effects</p>

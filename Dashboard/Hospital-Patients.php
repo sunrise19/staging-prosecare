@@ -118,6 +118,7 @@ if (!isset($_SESSION["superadmin"])) {
                                         <th data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true" class="">S/N</th>
                                         <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">Patient Name</th>
                                         <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">Email Address</th>
+                                        <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">Hospital</th>
                                         <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">HCP Assigned To</th>
                                         <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">Cancer Type</th>
                                         <th class="" data-a-wrap="false" data-fill-color="FFF3F6F9" data-b-a-s="medium" data-f-bold="true">Gender</th>
@@ -176,10 +177,26 @@ if (!isset($_SESSION["superadmin"])) {
                                                 $assigned_hcp = '-';
                                             }
 
+                                            $hospital = $row['hospital_id'];
+
+                                            if($hospital != 0){
+                                                $sqlHos = "SELECT * FROM hospitals WHERE hospital_id = '$hospital'";
+                                                $resultHos = $conn->query($sqlHos);
+                                                if ($resultHos->num_rows > 0){
+                                                    while($rowHos = $resultHos->fetch_assoc()){
+                                                        $hospital = ucwords($rowHos['name']);
+                                                    }
+                                                }
+
+                                            } else{
+                                                $hospital = '-';
+                                            }
+
                                             $data .= '<tr class="entry_row" id="' . $row['patient_id'] . '" user-id="' . $row['user_id'] . '" onclick="window.open(\'./PatientInfo?ID=' . $row['patient_id'] . '&From=Hospital-Patients\', \'_self\')">
                                                                     <td class="as_fixed white serial_number">' . $index . '</td>
                                                                     <td class="">' . ucwords($row['first_name'] . ' ' . $row['last_name']) . '</td>
                                                                     <td class="">' . $row['email'] . '</td>
+                                                                    <td class="">' . $hospital . '</td>
                                                                     <td class="">' . $assigned_hcp . '</td>
                                                                     <td class="">' . $row['cancer'] . '</td>
                                                                     <td class="">' . $row['gender'] . '</td>

@@ -16,8 +16,8 @@ if(isset($_REQUEST["data"])){
     $histology = $_REQUEST["data"][2];
     $cancer_grade = $_REQUEST["data"][3];
     $cancer_stage = $_REQUEST["data"][4];
-    $comorbidity = $_REQUEST["data"][5];
-
+    $cancer = $_REQUEST["data"][5];
+    $comorbidity = $_REQUEST["data"][6];
 
     $sql = "UPDATE patients SET 
             age_when_diagnosed='$age_when_diagnosed', 
@@ -25,6 +25,7 @@ if(isset($_REQUEST["data"])){
             histology='$histology',  
             cancer_grade='$cancer_grade', 
             cancer_stage='$cancer_stage', 
+            cancer = '$cancer',
             comorbidity='$comorbidity' 
             WHERE user_id='$id'";
 

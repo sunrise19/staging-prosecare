@@ -180,10 +180,9 @@ if (!isset($_SESSION["superadmin"])) {
                                                 IFNULL(patient_counts.total_patients, 0) AS total_patients
                                             FROM 
                                                 hcp 
-                                            JOIN 
-                                                hospitals ON hcp.hospital = hospitals.hospital_id 
-                                            JOIN 
-                                                users ON hcp.user_id = users.user_id 
+                                            
+                                            LEFT JOIN hospitals ON hcp.hospital = hospitals.hospital_id
+                                            LEFT JOIN users ON hcp.user_id = users.user_id 
                                             LEFT JOIN 
                                                 (SELECT assigned_hcp, COUNT(*) AS total_patients 
                                                 FROM patients 

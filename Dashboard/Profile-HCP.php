@@ -205,6 +205,25 @@
                                             }
                                         }
 
+                                        $sqlNextOfKin = "SELECT * FROM next_of_kin WHERE user_id='$user_id'";
+                                        $resultNextOfKin = $conn->query($sqlNextOfKin);
+                
+                                        if ($resultNextOfKin->num_rows > 0) {
+                                            while ($rowNextOfKin = $resultNextOfKin->fetch_assoc()) {
+                                                $name_n = $rowNextOfKin["name"];
+                                                $name_n_l = $rowNextOfKin["last_name"];
+                                                $email_n = $rowNextOfKin["email"];
+                                                $code_n = $rowNextOfKin["code"];
+                                                $phone_n = $rowNextOfKin["phone"];
+                                                $gender_n = $rowNextOfKin["gender"];
+                                                $relationship_n = $rowNextOfKin["relationship"];
+                                                $address_n = $rowNextOfKin["address"];
+                                                $country_n = $rowNextOfKin["country"];
+                                            }
+                                        }
+                
+                                        ?>
+
                                     ?>
 
                                     <div class="col-sm-9">

@@ -20,6 +20,7 @@
         color: #fff
     }
     .card-body:hover .col-2 img{
+        transition: 0.8s;
         filter: invert(1) brightness(2);
     }
     .card-body:hover .card-title, .card-body:hover .card-text{

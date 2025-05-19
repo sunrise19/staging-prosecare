@@ -7,19 +7,20 @@
     // $username = "u721901196_prosecare";
     // $password = "u721901196_prosecarE1@";
     // $dbname = "u721901196_prosecare";
-        
+         
+    
     // $username = "proscibg_prose";
     // $password = "proscibg_prose";
     // $dbname = "proscibg_prose";
-
+    
     $username = "root";
     $password = "";
-    $dbname = "prosecare";
-    
-    // $SITE_URL = "https://prosecare.com/TEST_V2";
-    $SITE_URL = "https://renderer.endor.dev/app";
+    $dbname = "proscibg_prose";
 
-    $VIDEO_CONFERENCING_URL = 'https://6251-102-117-182-61.ngrok-free.app/';
+    
+    $SITE_URL = "https://prosecare.com";
+
+    $VIDEO_CONFERENCING_URL = 'https://video-chat-df9161acd33a.herokuapp.com/';
 
     date_default_timezone_set('Africa/Lagos');
 
