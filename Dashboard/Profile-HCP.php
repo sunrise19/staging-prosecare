@@ -581,7 +581,7 @@
                                                     <select id="hospital" class="sweetselect" data-default="<?php echo $hospital;?>">
                                                         <option disabled selected value="">Select an option</option>
                                                         <?php 
-                                                            $sql = "SELECT * FROM hospitals";
+                                                            $sql = "SELECT * FROM hospitals WHERE hospital_id=$hospital";
                                                             $result = $conn->query($sql);
 
                                                             if ($result->num_rows > 0) {
