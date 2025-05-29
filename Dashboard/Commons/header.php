@@ -20,12 +20,13 @@
     <link rel="shortcut icon" href="../favicon.png">
     <link rel="stylesheet" href="../assets/libs/owl.carousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/libs/owl.carousel/assets/owl.theme.default.min.css">
-    <link href="Commons/bootstrap.css" rel="stylesheet" type="text/css" />    
+    <link href="Commons/bootstrap.css" rel="stylesheet" type="text/css" />  
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/css/sweetalert.css"  rel="stylesheet" type="text/css" />
     <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="../assets/css/oncopadi.css" rel="stylesheet" type="text/css" />
-    <link href="Commons/jquery-ui.css" rel="stylesheet" type="text/css" />    
+    <link href="Commons/jquery-ui.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <style>

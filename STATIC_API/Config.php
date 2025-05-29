@@ -20,7 +20,10 @@
     
     $SITE_URL = "https://prosecare.com";
 
-    $VIDEO_CONFERENCING_URL = 'https://video-chat-df9161acd33a.herokuapp.com/';
+    // $VIDEO_CONFERENCING_URL = 'https://video-chat-df9161acd33a.herokuapp.com/';
+    
+    // started using jitsi because heroku stopped working
+    $VIDEO_CONFERENCING_URL = 'https://meet.jit.si/';
 
     date_default_timezone_set('Africa/Lagos');
 

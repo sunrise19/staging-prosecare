@@ -349,6 +349,12 @@ if ($result->num_rows > 0) {
                                 <?php echo $data['phone'] ?>
                             </span>
                         </div>
+                        <div class="l2r text-dark mt-4 justify-content-center">
+                            <div class="action_button edit_info d-flex align-items-center font-size-14" style="gap: 5px;">
+                                <i class="bx bx-edit-alt font-size-18"></i>
+                                Edit
+                            </div>
+                        </div>
                     </div>
 
 
@@ -454,9 +460,13 @@ if ($result->num_rows > 0) {
 
     <style>
         .swal2-styled.swal2-confirm,
-        .swal2-styled.swal2-deny,
-        .swal2-styled.swal2-cancel {
+        .swal2-styled.swal2-deny
+        /* .swal2-styled.swal2-cancel  */
+        {
             background-color: #8D2D91;
+        }
+        .swal2-styled.swal2-cancel {
+            background-color:rgb(162, 161, 162);
         }
 
         .swal2-title {
@@ -466,6 +476,84 @@ if ($result->num_rows > 0) {
 
 
 <script>
+
+        
+        // $('.edit_info').off('click').on('click', function () {
+        //     $('.treament_modal_content').css('background', '#FFF')
+        //     $('.treatment_frame').attr('src', `EditHospital.php?HospitalID=${USER_ID}`);
+
+        //     $('.treament_modal_title').text('Edit Hospital Information')
+        //     $('.treament_modal').addClass('sm').fadeIn()
+        // })
+
+        // $('.close_treament_modal').on('click', function(){
+        //     $('.treatment_frame').attr('src', '')
+        //     $('.treament_modal').fadeOut()
+        // })
+
+        $('.edit_info').on('click', function () {
+            Swal.fire({
+                title: 'Edit Hospital Info',
+                html: `
+                    <p class="text-left mb-0">Name</p>
+                    <input type="text" id="edit_name" class="swal2-input form-control" placeholder="Name" value="<?php echo $data['name']; ?>">
+                    <p class="text-left mb-0">Email</p>
+                    <input type="email" id="edit_email" class="swal2-input form-control" placeholder="Email" value="<?php echo $data['email']; ?>">
+                    <p class="text-left mb-0">Phone Number</p>
+                    <input type="text" id="edit_phone" class="swal2-input form-control" placeholder="Phone" value="<?php echo $data['phone']; ?>">
+                `,
+                confirmButtonText: 'Update',
+                showCancelButton: true,
+                focusConfirm: false,
+                preConfirm: () => {
+                const name = $('#edit_name').val();
+                const email = $('#edit_email').val();
+                const phone = $('#edit_phone').val();
+
+                if (!name || !email || !phone) {
+                    Swal.showValidationMessage('Please fill all fields');
+                    return false;
+                }
+
+                // Return a promise that resolves with { success: true }
+                return $.ajax({
+                    url: './API/api_update_hospital_info.php?hospital_id=<?= $hospital_id ?>',
+                    type: 'POST',
+                    data: { name, email, phone },
+                    dataType: 'json'
+                }).then(response => {
+                    if (response.success) {
+                        return { success: true }; // wrap in object
+                    } else {
+                        Swal.showValidationMessage(response.message || 'Update failed');
+                        return false;
+                    }
+                }).catch((err) => {
+                    Swal.showValidationMessage('Request failed');
+                    console.error('AJAX error:', err);
+                    return false;
+                });
+            }
+
+            }).then((result) => {
+                console.log('Swal result:', result);
+
+                if (result.value?.success) {
+                    Swal.fire({
+                        icon: 'Success',
+                        title: 'Success',
+                        text: 'Hospital info updated successfully',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => {
+                        location.reload();
+                    });
+                }
+            });
+
+        });
+
+
         $('.S-Hospitals').addClass('mm-active').find('a').addClass('active')
 
         $('.action_button.deactivate').on('click', function() {
@@ -610,6 +698,7 @@ if ($result->num_rows > 0) {
                 })
             }
         }
+
     </script>
 
     </body>

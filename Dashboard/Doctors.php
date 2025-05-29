@@ -231,7 +231,9 @@ if (!isset($_SESSION["superadmin"])) {
                                         }
                                     } else {
 
-                                        $sql = 'SELECT * FROM hcp JOIN hospitals ON hcp.hospital=hospitals.hospital_id JOIN users ON hcp.user_id=users.user_id  ORDER BY users.last_active_date DESC, hcp.first_name';
+                                        // $sql = 'SELECT * FROM hcp JOIN hospitals ON hcp.hospital=hospitals.hospital_id JOIN users ON hcp.user_id=users.user_id  ORDER BY users.last_active_date DESC, hcp.first_name';
+                                        $sql = "SELECT * FROM hcp JOIN hospitals ON hcp.hospital = hospitals.hospital_id JOIN users ON hcp.user_id = users.user_id WHERE hcp.hospital = $_SESSION[hospital_id] ORDER BY users.last_active_date DESC, hcp.first_name";
+
 
                                         $result = $conn->query($sql);
 

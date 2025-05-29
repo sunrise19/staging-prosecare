@@ -262,11 +262,11 @@
                                                 <div class="input-group outlined px-2" style="height: 62.59px;">
                                                     <select class="form-select parent-outline" id="education">
                                                         <option disabled selected>Select an option</option>
-                                                        <option value="Uneducated">Uneducated</option>
                                                         <option value="Primary">Primary</option>
+                                                        <option value="Middle">Middle</option>
                                                         <option value="Secondary">Secondary</option>
+                                                        <option value="Vocational">Vocational</option>
                                                         <option value="Tertiary">Tertiary</option>
-                                                        <option value="other">Others</option>
                                                     </select>
                                                     <input style="flex: 3.3; display:none" type="text" autocomplete="off" class="form-control form-control-lg parent-outline font-size-14" id="eeducation" placeholder="Enter Level of Education">
                                                 </div>
@@ -334,12 +334,31 @@
                                             </div>
 
                                             <div class="mb-3">
+                                                <label class="i-g-block-label">Address</label>
+                                                <div class="input-group outlined">
+                                                    <!-- <button class="btn btn-transparent" type="button" disabled><i class="bx bx-map font-size-17 button-icon"></i></button> -->
+                                                    <input type="text" autocomplete="off" class="form-control form-control-lg parent-outline font-size-14" id="address" placeholder="Enter Address">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="i-g-block-label">State of Origin</label>
+                                                <div class="input-group outlined" style="height: 62.59px;">
+                                                    <!-- <button class="btn btn-transparent" type="button" disabled><i class="bx bx-map-pin font-size-17 button-icon"></i></button> -->
+                                                    <select class="form-select parent-outline" id="stateoforigin">
+                                                        <option disabled selected>Select an option</option>
+                                                        <option disabled>Select Country First</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
                                                 <label class="i-g-block-label">LGA (Local Government Area)</label>
                                                 <div class="input-group outlined" style="height: 62.59px;">
                                                     <!-- <button class="btn btn-transparent" type="button" disabled><i class="bx bx-map font-size-17 button-icon"></i></button> -->
                                                     <select class="form-select parent-outline" id="lga">
                                                         <option disabled selected>Select an option</option>
-                                                        <option disabled>Select State First</option>
+                                                        <option disabled>Select State Of Origin First</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -374,10 +393,11 @@
                                                     <!-- <button class="btn btn-transparent" type="button" disabled><i class="bx bx-home-alt font-size-17 button-icon"></i></button> -->
                                                     <select class="form-select parent-outline" id="income">
                                                         <option disabled selected>Select an option</option>
-                                                        <option value="<200000">Less than ₦200,000</option>
-                                                        <option value="<200000-500000">₦200,000 - ₦500,000</option>
-                                                        <option value="<500000-1000000">₦500,000 - ₦1,000,000</option>
-                                                        <option value=">1000000">Above ₦1,000,000</option>
+                                                        <option value=">60000000">Upper Class: Above ₦60,000,000</option>
+                                                        <option value="12000000-59999999">Lower Upper Class: ₦12,000,000 - ₦59,999,999</option>
+                                                        <option value="1200000-11999999">Middle Class: ₦1,200,000 - ₦11,999,999</option>
+                                                        <option value="150000-1199999">Lower Class: ₦150,000 - ₦1,199,999</option>
+                                                        <option value="<150000">Less than ₦150,000</option>
                                                     </select>
                                                 </div>
                                             </div>

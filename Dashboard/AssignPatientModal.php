@@ -72,7 +72,8 @@ include('../STATIC_API/Config.php');
         $hospital_id = $_SESSION['hospital_id'];
 
         $sql = "SELECT * FROM hcp JOIN users on users.user_id=hcp.user_id WHERE hcp.hospital=$hospital_id";
-
+        
+        
         $result = mysqli_query($conn, $sql);
 
         if ($result->num_rows > 0) {

@@ -24,6 +24,12 @@ $(document).ready(function() {
                 States += '<option value="' + state + '">' + state + '</option>'
             });
             $('#state').html(States)
+            var StateOfOrigin = '<option disabled selected>State</option>',
+                country = CountryStates[country]
+            country.StateOfOrigin.forEach(state => {
+                StateOfOrigin += '<option value="' + state + '">' + state + '</option>'
+            });
+            $('#stateoforigin').html(StateOfOrigin)
 
             $('#code').find('option').attr('selected', false).each(function() {
                 if ($(this).attr('value') == country.Code) {
@@ -39,7 +45,7 @@ $(document).ready(function() {
 
     })
 
-    $('#state').change(function() {
+    $('#stateoforigin').change(function() {
         var country = $('#country').val(),
             state = $(this).val()
         if (country != '') {

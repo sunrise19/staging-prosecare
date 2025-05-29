@@ -1,6 +1,8 @@
 <?php 
-    error_reporting(0); 
-    ini_set('display_errors', 0);
+    // error_reporting(0); 
+    // ini_set('display_errors', 0);
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     session_start(); 
     $TITLE = "Home"; 
     include('Commons/header.php');   
@@ -392,49 +394,52 @@
 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script>
-            var options = {
-                    chart: {
-                        type: 'area',
-                        height: 320,
-                        zoom: {enabled: false},
-                        pan: {enabled: false},
-                        toolbar: {enabled: false},
-                    },
-                    colors: ['#8D2D92'],
-                    fill: { 
-                        type: 'gradient', 
+            document.addEventListener("DOMContentLoaded", function () {
+                var options = {
+                        chart: {
+                            type: 'area',
+                            height: 320,
+                            zoom: {enabled: false},
+                            pan: {enabled: false},
+                            toolbar: {enabled: false},
+                        },
                         colors: ['#8D2D92'],
+                        fill: { 
+                            type: 'gradient', 
+                            colors: ['#8D2D92'],
 
-                    },
-                    dataLabels: {
-                        enabled: false,
-                        style: {
-                            colors: ['#F44336', '#E91E63']
-                        }
-                    },
-                    markers: {
-                      colors: ['#8D2D92A1',]
-                    },
-                    stroke: {
-                        curve: 'smooth',
-                    },
-                    series: [{
-                        name: 'Severity',
-                        data: [tiredness , vomiting, nausea, mouth_sore, headache]
-                    }],
-                    xaxis: {
-                        categories: ['Tiredness', 'Vomiting', 'Nausea', 'Mouth sores', 'Headache']
-                    },
-                    yaxis: {
-                        labels: {
-                            show: false,
+                        },
+                        dataLabels: {
+                            enabled: false,
+                            style: {
+                                colors: ['#F44336', '#E91E63']
+                            }
+                        },
+                        markers: {
+                        colors: ['#8D2D92A1',]
+                        },
+                        stroke: {
+                            curve: 'smooth',
+                        },
+                        series: [{
+                            name: 'Severity',
+                            data: [tiredness , vomiting, nausea, mouth_sore, headache]
+                        }],
+                        xaxis: {
+                            categories: ['Tiredness', 'Vomiting', 'Nausea', 'Mouth sores', 'Headache']
+                        },
+                        yaxis: {
+                            labels: {
+                                show: false,
+                            }
                         }
                     }
-                }
 
-            var chart = new ApexCharts(document.querySelector("#sfx_chart"), options);
+                var chart = new ApexCharts(document.querySelector("#sfx_chart"), options);
 
-            chart.render();
+                chart.render();
+            });
+      
         </script>
         <style>
             .apexcharts-toolbar{
@@ -442,11 +447,12 @@
             }
         </style>
 
+        <!-- <script src="../assets/apexchart/apexcharts.min.js"></script> -->
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+        <!-- <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-analytics.js"></script> -->
         <script>
             const firebaseConfig = {
                 apiKey: "AIzaSyBnp-GgL2USkqctQajLi2BTEmIXDFjpvEI",
@@ -474,15 +480,29 @@
                 
             $(document).ready(function(){
 
-                ROOMS_DB
-                .where('users', 'array-contains-any', [FIRE_ID])
-                .where('lastSender', '!=', FIRE_ID)
-                .where('read', '==', false)
-                .onSnapshot((querySnapshot) => {
-                    let count = querySnapshot.docs.length
-                    $('.unread_messages').text(count)
-                    console.log(count)
-                })
+                // ROOMS_DB
+                // .where('users', 'array-contains-any', [FIRE_ID])
+                // .where('lastSender', '!=', FIRE_ID)
+                // .where('read', '==', false)
+                // .onSnapshot((querySnapshot) => {
+                //     let count = querySnapshot.docs.length
+                //     $('.unread_messages').text(count)
+                //     console.log(count)
+                // })
+
+                try {
+                    ROOMS_DB
+                    .where('users', 'array-contains-any', [FIRE_ID])
+                    .where('lastSender', '!=', FIRE_ID)
+                    .where('read', '==', false)
+                    .onSnapshot((querySnapshot) => {
+                        let count = querySnapshot.docs.length;
+                        $('.unread_messages').text(count);
+                        console.log(count);
+                    });
+                } catch (err) {
+                    console.error("Firebase Firestore error:", err);
+                }
 
                 if($('tr').length > 10){
                     $('#sch-table').DataTable();
